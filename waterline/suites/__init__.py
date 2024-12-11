@@ -5,6 +5,7 @@ from .nas import NAS
 from .gap import GAP
 from .spec2017 import SPEC2017
 from .embench import Embench
+from .pbbs import PBBS
 
 # Misc 'benchmarks'
 from .stockfish import Stockfish
