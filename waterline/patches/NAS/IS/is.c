@@ -29,7 +29,6 @@
   OpenMP C version: S. Satoh
   
 --------------------------------------------------------------------*/
-extern double timer_read(int);
 
 #include "npbparams.h"
 #include <stdlib.h>
@@ -38,6 +37,17 @@ extern double timer_read(int);
 #include <omp.h>
 #endif /* _OPENMP */
 
+extern void timer_clear(int);
+extern void timer_start(int);
+extern void timer_stop(int);
+extern double timer_read(int);
+
+extern void c_print_results(char *name, char class, int n1, int n2,
+			    int n3, int niter, int nthreads, double t,
+			    double mops, char *optype, int passed_verification,
+			    char *npbversion, char *compiletime, char *cc,
+			    char *clink, char *c_lib, char *c_inc,
+			    char *cflags, char *clinkflags, char *rand);
 
 /*****************************************************************/
 /* For serial IS, buckets are not really req'd to solve NPB1 IS  */
@@ -581,7 +591,7 @@ void rank( int iteration )
 /*************             M  A  I  N             ****************/
 /*****************************************************************/
 
-main( argc, argv )
+int main( argc, argv )
     int argc;
     char **argv;
 {

@@ -54,10 +54,12 @@ class NAS(Suite):
         self.workspace.shell(
             "git",
             "clone",
-            "https://github.com/nickwanninger/NPB3.0-omp-C.git",
+            "https://github.com/knagaitsev/NPB3.0-omp-C.git",
             self.src,
             "--depth",
             "1",
+            "--branch",
+            "waterline"
         )
         self.apply_patch("NAS")
         # This is really gross. TODO: refactor this!
