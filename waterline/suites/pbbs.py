@@ -172,14 +172,10 @@ class PBBS(Suite):
             cwd=self.src
         )
 
-        # ignore output of this for now
-        try:
-            self.workspace.shell(
-                "make",
-                "-C",
-                self.src,
-                "-j48"
-            )
-        except Exception as e:
-            print(e)
-            pass
+        self.workspace.shell(
+            "make",
+            "ext",
+            "-C",
+            self.src,
+            "-j48"
+        )
