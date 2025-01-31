@@ -14,12 +14,17 @@ class GAPBenchmark(Benchmark):
         if self.suite.enable_openmp:
             args.append("-fopenmp")
         self.shell(
-            "gclang++",
+            "wllvm++",
             source_file,
             "-std=c++11",
             "-O1",
             "-Wall",
+            # "-c",
+            # "-emit-llvm",
             *args,
+            "-msmall-data-limit=0",
+            "-lomp",
+            "-L/home/kir/beandip/beandip/local/lib",
             "-o",
             output,
         )
@@ -29,7 +34,7 @@ class GAPBenchmark(Benchmark):
             self.suite.workspace,
             [object],
             output,
-            args=["-fopenmp", "-lm", "-lstdc++", "-lpthread"],
+            args=["-fopenmp", "-lm", "-lstdc++", "-lpthread", "-lomp"],
         )
 
     def run_configs(self):

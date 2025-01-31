@@ -36,7 +36,7 @@ class EmbenchBenchmark(Benchmark):
                 source_files.append(source / filename)
 
         self.shell(
-            "gclang",
+            "wllvm",
             "-fdata-sections",
             "-ffunction-sections",
             f"-I{self.suite.src}/support",
@@ -44,6 +44,7 @@ class EmbenchBenchmark(Benchmark):
             f"-I{self.suite.src}/config/native/chips/default",
             f"-I{self.suite.src}/config/native",
             "-lm",
+            "-msmall-data-limit=0",
             "-gdwarf-2",
             f"-DITERATIONS={self.suite.iters}",
             "-DCPU_MHZ=1",

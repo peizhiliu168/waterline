@@ -19,11 +19,16 @@ class NASBenchmark(Benchmark):
         """
         Compile this benchmark to a certain output directory
         """
+
+        bench_class = self.suite.suite_class
+        # if self.name == "is":
+        #     bench_class = "B"
+
         self.shell(
-            "make", "-C", self.suite.src, self.name, f"CLASS={self.suite.suite_class}"
+            "make", "-C", self.suite.src, self.name, f"CLASS={bench_class}"
         )
         # if that compiled, copy the binary to the right location
-        compiled = self.suite.src / "bin" / (self.name + "." + self.suite.suite_class)
+        compiled = self.suite.src / "bin" / (self.name + "." + bench_class)
         shutil.copy(compiled, output)
 
     def link(self, object, dest, linker):
@@ -66,10 +71,13 @@ class NAS(Suite):
         (self.src / "bin").mkdir(exist_ok=True)
         make_def_path = self.src / "config" / "make.def"
         with make_def_path.open("w") as cfg:
-            cfg.write(f"CC    = gclang\n")
-            cfg.write(f"CLINK = gclang\n")
+            cfg.write(f"CC    = wllvm\n")
+            cfg.write(f"CLINK = wllvm\n")
             cfg.write(f"C_LIB = -lm\n")
             cfg.write(f"C_INC = -I../common\n")
+
+            # baseline_flags.append("-c")
+            # baseline_flags.append("-emit-llvm")
             if self.enable_openmp:
                 cfg.write(f"CFLAGS = {' '.join(baseline_flags)} -fPIC -fopenmp\n")
             else:

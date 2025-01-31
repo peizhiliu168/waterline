@@ -3,3 +3,4 @@ rich
 requests
 pandas
 twine
+wllvm @ git+https://github.com/knagaitsev/whole-program-llvm@riscv_cross_compile
