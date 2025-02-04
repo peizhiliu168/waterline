@@ -122,6 +122,7 @@ class Workspace:
 
                     input = suite_bin / benchmark.name / "a.out"
                     output = benchmark_ir_dir / "input.bc"
+                    print("output------->>>>>>>>>>>>>>>>>>>>>>>>>> ", output)
                     if not output.exists():
                         runner.add(
                             jobs.FunctionJob(
