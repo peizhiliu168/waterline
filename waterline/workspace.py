@@ -278,7 +278,7 @@ class Workspace:
     def shell(self, *args, **kwargs):
         env=os.environ.copy()
         # env vars for wllvm
-        env["LLVM_COMPILER_PATH"] = "/home/peizhi/Projects/village_project/sources/village-riscv"
+        env["LLVM_COMPILER_PATH"] = "/home/peizhi/Projects/village_project/sources/village-riscv/local/bin"
         env["LLVM_COMPILER"] = "clang"
         # this can be set conditionally
         if self.enable_wllvm_target_prefix:
