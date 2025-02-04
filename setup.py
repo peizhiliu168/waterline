@@ -11,7 +11,7 @@ setup(
         "rich",
         "requests",
         "pandas",
-        "wllvm @ git+https://github.com/peizhiliu168/whole-program-llvm@riscv_cross_compile_env"
+        "wllvm @ git+https://github.com/knagaitsev/whole-program-llvm@riscv_cross_compile_env"
     ],
     include_package_data=True,
     package_data={"": ["waterline"]},
